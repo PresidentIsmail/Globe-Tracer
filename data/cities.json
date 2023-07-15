@@ -1,0 +1,59 @@
+{
+  "cities": [
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.416705,
+        "lng": -3.703583
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.5170365,
+        "lng": 13.3888599
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "date": "2028-03-02T18:45:22.480Z",
+      "notes": "Enjoyed the food!",
+      "position": {
+        "lat": 48.8534951,
+        "lng": 2.3483915
+      },
+      "id": 56340192
+    },
+    {
+      "cityName": "Rome",
+      "country": "Italy",
+      "date": "2028-08-18T14:09:05.003Z",
+      "notes": "Historical sites were amazing!",
+      "position": {
+        "lat": 41.89332,
+        "lng": 12.482932
+      },
+      "id": 87243091
+    },
+    {
+      "cityName": "Barcelona",
+      "country": "Spain",
+      "date": "2028-12-25T05:45:08.101Z",
+      "notes": "Loved the architecture!",
+      "position": {
+        "lat": 41.382894,
+        "lng": 2.177432
+      },
+      "id": 7914029
+    }
+  ]
+}
