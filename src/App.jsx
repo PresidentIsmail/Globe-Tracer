@@ -13,33 +13,53 @@ import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import Form from "./components/Form";
 // import context
-import { CitiesProvider, useCitiesContext } from "./context/CitiesContext";
+import { CitiesProvider } from "./context/CitiesContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
 function App() {
+  const { isAuthenticated } = useAuth();
+
 
   return (
-    // wrap context provider around the router
-    <CitiesProvider>
-      <Router>
-        <Routes>
-          <Route index element={<Homepage />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/app" element={<MainApplication />}>
-            {/* Nested Routes */}
-            <Route index element={<CityList />} />
-            <Route path="cities" element={<CityList />} />
-            <Route path="cities/add" element={<Form />} />
-            <Route path="cities/:id" element={<City />} />
-            <Route path="countries" element={<CountryList />} />
-          </Route>
+    // wrap context providers around the router
 
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Router>
-    </CitiesProvider>
+      <CitiesProvider>
+        <Router>
+          <Routes>
+            <Route index element={<Homepage />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/login" element={<Login />} />
+           {isAuthenticated ? (
+             <Route path="/app" element={<MainApplication />}>
+             {/* Nested Routes */}
+             <Route index element={<CityList />} />
+             <Route path="cities" element={<CityList />} />
+             <Route path="cities/add" element={<Form />} />
+             <Route path="cities/:id" element={<City />} />
+             <Route path="countries" element={<CountryList />} />
+           </Route>
+           ) : (
+             <Route path="*" element={<Login />} />
+            )}
+
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Router>
+      </CitiesProvider>
+  
   );
 }
 
-export default App;
+
+// make RootApp component and wrap it with AuthProvider
+function RootApp() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}
+
+
+export default RootApp;

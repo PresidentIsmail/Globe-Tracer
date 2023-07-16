@@ -2,11 +2,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react"; // Don't forget to import useEffect
 import Sidebar from "../components/Sidebar";
 import Map from "../components/Map";
+import User from "../components/User";
+
 import styles from "./MainApplication.module.css";
+import { useAuth } from "../context/AuthContext";
 
 const MainApplication = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
      // Remove trailing slash if present from the current pathname
@@ -23,6 +27,7 @@ const MainApplication = () => {
     <div className={styles.app}>
       <Sidebar />
       <Map />
+      {isAuthenticated && <User />}
     </div>
   );
 };

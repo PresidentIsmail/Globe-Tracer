@@ -1,23 +1,23 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
 
 // initial state for authentication
 const initialState = {
-  user: null,
+  email: "",
+  password: "",
   isAuthenticated: false,
 };
 
 // create the context
-const AuthContext = createContext(initialState);
+const AuthContext = createContext();
 
-/* 
+// fake user for authentication
 const FAKE_USER = {
   name: "Casanova",
   email: "casanova@example.com",
   password: "@Wheat",
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
-*/
 
 // create the reducer
 const authReducer = (state, action) => {
@@ -25,17 +25,19 @@ const authReducer = (state, action) => {
     case "LOGIN":
       return {
         ...state,
-        user: action.payload,
+        email: action.payload.email,
+        password: action.payload.password,
         isAuthenticated: true,
       };
     case "LOGOUT":
       return {
         ...state,
-        user: null,
+        email: "",
+        password: "",
         isAuthenticated: false,
       };
     default:
-      return state;
+      throw new Error(`Unhandled action type: ${action.type}`);
   }
 };
 
@@ -43,21 +45,23 @@ const authReducer = (state, action) => {
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const login = (user) => {
-    // check if the user exists in the database
-    if (
-      user.email === FAKE_USER.email &&
-      user.password === FAKE_USER.password
-    ) {
+  // login function
+  const login = (email, password) => {
+    // if email and password match the fake user, dispatch the login action
+    if (email === FAKE_USER.email && password === FAKE_USER.password) {
       dispatch({
         type: "LOGIN",
-        payload: user,
+        payload: {
+          email,
+          password,
+        },
       });
     } else {
-      throw new Error("Invalid login credentials");
+      alert("Invalid credentials");
     }
   };
 
+  // logout function
   const logout = () => {
     dispatch({
       type: "LOGOUT",
@@ -65,10 +69,13 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{
+    <AuthContext.Provider
+      value={{
         login,
         logout,
-    }}>
+        isAuthenticated: state.isAuthenticated,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -81,10 +88,11 @@ AuthProvider.propTypes = {
 
 // create custom hooks for the context
 const useAuth = () => {
-  if (AuthContext === undefined) {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  return AuthContext;
+  return context;
 };
 
 export { AuthProvider, useAuth };
