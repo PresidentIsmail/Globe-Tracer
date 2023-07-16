@@ -10,7 +10,7 @@ import styles from "./Form.module.css";
 import Button from "./Button";
 import Message from "./Message";
 import Spinner from "./Spinner";
-import { useCitiesContext } from "../context/CitiesProvider";
+import { useCitiesContext } from "../context/CitiesContext";
 
 // import function that gets location data from lat and lng
 import { getLocationData } from "../custom-functions/getLatLong";

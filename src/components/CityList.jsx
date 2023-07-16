@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 import CityItem from "./CityItem";
 
 import styles from "./CityList.module.css";
-import { useCitiesContext } from "../context/CitiesProvider";
+import { useCitiesContext } from "../context/CitiesContext";
 
 const CityList = () => {
   // get the cities and isLoading values from the context

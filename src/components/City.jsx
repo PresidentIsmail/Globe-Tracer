@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCitiesContext } from "../context/CitiesProvider";
+import { useCitiesContext } from "../context/CitiesContext";
 
 import styles from "./City.module.css";
 import Button from "./Button";

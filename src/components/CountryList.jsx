@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 import CountryItem from "./CountryItem";
 
 import styles from "./CountryList.module.css";
-import { useCitiesContext } from "../context/CitiesProvider";
+import { useCitiesContext } from "../context/CitiesContext";
 
 const CountyList = () => {
   // get the cities and isLoading values from the context
@@ -37,7 +37,9 @@ const CountyList = () => {
 
   // display a message if there is no cities
   if (countries.length === 0) {
-    return <Message message="No countries to display" />;
+    return <Message >
+      There are no countries to display
+    </Message>;
   }
 
   return (

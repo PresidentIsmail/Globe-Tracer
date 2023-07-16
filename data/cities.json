@@ -34,28 +34,6 @@
       "id": 56340192
     },
     {
-      "cityName": "Rome",
-      "country": "Italy",
-      "date": "2028-08-18T14:09:05.003Z",
-      "notes": "Historical sites were amazing!",
-      "position": {
-        "lat": 41.89332,
-        "lng": 12.482932
-      },
-      "id": 87243091
-    },
-    {
-      "cityName": "Barcelona",
-      "country": "Spain",
-      "date": "2028-12-25T05:45:08.101Z",
-      "notes": "Loved the architecture!",
-      "position": {
-        "lat": 41.382894,
-        "lng": 2.177432
-      },
-      "id": 7914029
-    },
-    {
       "cityName": "Spitsbergen",
       "country": "Norway",
       "date": "2023-07-16",

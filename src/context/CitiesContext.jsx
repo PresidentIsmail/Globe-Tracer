@@ -56,9 +56,30 @@ const CitiesProvider = ({ children }) => {
     }
   };
 
+  // function that deletes a city from the database
+  const deleteCity = async (id) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${url}/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const city = await response.json();
+      setCities(cities.filter((city) => city.id !== id));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // return the context provider
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, setIsLoading, addCity }}>
+    <CitiesContext.Provider
+      value={{ cities, isLoading, setIsLoading, addCity, deleteCity }}
+    >
       {children}
     </CitiesContext.Provider>
   );

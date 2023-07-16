@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import PropTypes from "prop-types";
 
-import { useCitiesContext } from "../context/CitiesProvider";
+import { useCitiesContext } from "../context/CitiesContext";
 import styles from "./Map.module.css";
 
 // function to get country code
