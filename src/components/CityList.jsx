@@ -1,11 +1,14 @@
-import PropTypes from "prop-types";
 import Message from "./Message";
 import Spinner from "./Spinner";
 import CityItem from "./CityItem";
 
 import styles from "./CityList.module.css";
+import { useCitiesContext } from "../context/CitiesProvider";
 
-const CityList = ({ cities, isLoading }) => {
+const CityList = () => {
+  // get the cities and isLoading values from the context
+  const { cities, isLoading } = useCitiesContext();
+
   // display a spinner if the data is loading
   if (isLoading) {
     return <Spinner />;
@@ -13,7 +16,7 @@ const CityList = ({ cities, isLoading }) => {
 
   // display a message if there is no cities
   if (cities.length === 0) {
-    return <Message message="No cities to display" />;
+    return <Message>No cities to display</Message>;
   }
 
   return (
@@ -23,12 +26,6 @@ const CityList = ({ cities, isLoading }) => {
       })}
     </div>
   );
-};
-
-// Add prop type validation for the cities and isLoading props
-CityList.propTypes = {
-  cities: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
 };
 
 export default CityList;

@@ -249,7 +249,8 @@ const countryList = {
 };
 // Get the country code from the nation
 export function getCountryCode(countryName) {
-  const countryCode = countryList[countryName];
+  const capitalisedCountryName = countryName.charAt(0).toUpperCase() + countryName.slice(1);
+  const countryCode = countryList[capitalisedCountryName];
   if (countryCode) {
     return countryCode.toLowerCase();
   } else {

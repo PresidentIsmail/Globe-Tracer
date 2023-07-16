@@ -1,11 +1,14 @@
-import PropTypes from "prop-types";
 import Message from "./Message";
 import Spinner from "./Spinner";
 import CountryItem from "./CountryItem";
 
 import styles from "./CountryList.module.css";
+import { useCitiesContext } from "../context/CitiesProvider";
 
-const CountyList = ({ cities, isLoading }) => {
+const CountyList = () => {
+  // get the cities and isLoading values from the context
+  const { cities, isLoading } = useCitiesContext();
+
   // make a function that gets the unique countries from the cities array
   const getCountries = (cities) => {
     // create an empty array to store the countries
@@ -51,10 +54,6 @@ const CountyList = ({ cities, isLoading }) => {
   );
 };
 
-// Add prop type validation for the cities and isLoading props
-CountyList.propTypes = {
-  cities: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-};
+
 
 export default CountyList;

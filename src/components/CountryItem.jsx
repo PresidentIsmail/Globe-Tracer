@@ -8,9 +8,7 @@ import { getCountryCode } from "../custom-functions/getCountryCode";
 
 const CountryItem = ({ country }) => {
   // Get the country code for the country
-  const countryCode = getCountryCode(
-    country.charAt(0).toUpperCase() + country.slice(1)
-  );
+  const countryCode = getCountryCode(country);
 
   return (
     <div className={styles.countryItem}>

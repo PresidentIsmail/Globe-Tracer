@@ -8,6 +8,7 @@ import styles from "./CityItem.module.css";
 import { getCountryCode } from "../custom-functions/getCountryCode";
 
 const CityItem = ({ city }) => {
+  // get city from 
   const { id, cityName, date, country, position } = city;
   // destructure lat as latitude and long as longitude from position
   const { lat: latitude, lng: longitude } = position;
@@ -28,7 +29,7 @@ const CityItem = ({ city }) => {
   return (
     // link to id and set query params for lat and long
     <Link
-      to={`${id}?lat=${latitude}&long=${longitude}`}
+      to={`${id}?lat=${latitude}&lng=${longitude}`}
       className={styles.cityItem}
     >
       {/* Make sure the 'fi' class is added here */}
