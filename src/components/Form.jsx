@@ -10,13 +10,10 @@ import styles from "./Form.module.css";
 import Button from "./Button";
 import Message from "./Message";
 import Spinner from "./Spinner";
+import { useCitiesContext } from "../context/CitiesProvider";
 
 // import function that gets location data from lat and lng
-import {
-  getLocationData,
-  getLocationData_Mapbox,
-  MAPBOX_API_TOKEN,
-} from "../custom-functions/getLatLong";
+import { getLocationData } from "../custom-functions/getLatLong";
 //  function that gets the country code
 import { getCountryCode } from "../custom-functions/getCountryCode";
 
@@ -31,6 +28,9 @@ const Form = () => {
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  // get isLoading and addCity from the context
+  const { addCity } = useCitiesContext();
+  const navigate = useNavigate();
 
   // get lng and lat from the url params in useEffect
   useEffect(() => {
@@ -64,11 +64,6 @@ const Form = () => {
 
   // get country code from country
   useEffect(() => {
-    // if country code is already set, return
-    if (countryCode) {
-      return;
-    }
-
     try {
       const countryCode = getCountryCode(country);
       console.log(`getting country code for ${country}`);
@@ -83,8 +78,6 @@ const Form = () => {
       );
     }
   }, [country, countryCode]);
-
-  const navigate = useNavigate();
 
   // when user submits the form
   const handleSubmit = (event) => {
@@ -102,28 +95,11 @@ const Form = () => {
         lng,
       },
     };
-
     // add the new city to the database
-    fetch("http://localhost:4000/cities", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newCity),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Something went wrong!");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // navigate to the city page
-        navigate(`/app/cities/${data.id}`);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    addCity(newCity);
+
+    // navigate to app/cities
+    navigate("/app/cities");
   };
 
   // when user clicks on the Back button navigate to the previous page

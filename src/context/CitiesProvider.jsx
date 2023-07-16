@@ -28,14 +28,37 @@ const CitiesProvider = ({ children }) => {
     }
   };
 
-  // call the fetchCities function when the component mounts
+  // call the fetch Cities function when the component mounts
   useEffect(() => {
     fetchCities();
   }, []);
 
+  // function that adds a new city to the database
+  const addCity = async (newCity) => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCity),
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const city = await response.json();
+      setCities([...cities, city]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // return the context provider
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, setIsLoading }}>
+    <CitiesContext.Provider value={{ cities, isLoading, setIsLoading, addCity }}>
       {children}
     </CitiesContext.Provider>
   );

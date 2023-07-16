@@ -8,7 +8,7 @@ import styles from "./CityItem.module.css";
 import { getCountryCode } from "../custom-functions/getCountryCode";
 
 const CityItem = ({ city }) => {
-  // get city from 
+  // get city from
   const { id, cityName, date, country, position } = city;
   // destructure lat as latitude and long as longitude from position
   const { lat: latitude, lng: longitude } = position;
@@ -49,10 +49,7 @@ CityItem.propTypes = {
     emoji: PropTypes.string,
     date: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
-    position: PropTypes.shape({
-      lat: PropTypes.number,
-      lng: PropTypes.number
-    })
+    position: PropTypes.object,
   }).isRequired,
 };
 

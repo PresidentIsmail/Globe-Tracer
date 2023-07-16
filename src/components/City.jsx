@@ -28,7 +28,6 @@ const reducer = (state, action) => {
   // destructuring the action object
   switch (action.type) {
     case "SET_CITY":
-      console.log(action.payload);
       if (!action.payload.countryCode) {
         action.payload.countryCode = getCountryCode(action.payload.country);
       }

@@ -54,6 +54,28 @@
         "lng": 2.177432
       },
       "id": 7914029
+    },
+    {
+      "cityName": "Spitsbergen",
+      "country": "Norway",
+      "date": "2023-07-16",
+      "notes": "test",
+      "position": {
+        "lat": "78.80197997387756",
+        "lng": "18.281250000000004"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Kiboga",
+      "country": "Uganda",
+      "date": "2023-07-16",
+      "notes": "test",
+      "position": {
+        "lat": "0.7909904981540058",
+        "lng": "32.16796875000001"
+      },
+      "id": 98443199
     }
   ]
 }
