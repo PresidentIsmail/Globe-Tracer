@@ -67,7 +67,12 @@ let cities = [
 ];
 
 // Middleware
-app.use(cors());
+// Allow requests from localhost and https://globe-tracer.netlify.app
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://globe-tracer.netlify.app"],
+  })
+);
 app.use(bodyParser.json());
 
 // Routes
@@ -110,5 +115,5 @@ app.delete("/cities/:id", (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Backend server is running at http://localhost:${port}`);
+  console.log(`Backend server is running on port ${port}`);
 });
