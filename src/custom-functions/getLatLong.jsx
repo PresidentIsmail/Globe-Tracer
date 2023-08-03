@@ -1,5 +1,4 @@
-export const MAPBOX_API_TOKEN =
-  "pk.eyJ1IjoiaGFwcHlwdXJwbGVtYW5nbyIsImEiOiJjbGozazU4N3kxYmQ5M2hzM2J3dWtsNmppIn0.PtFBCeIU07925PG35dmJWQ";
+export const MAPBOX_API_TOKEN = import.meta.env.VITE_MAPBOX_API_TOKEN;
 
 export async function getLatLong(city, apiKey) {
   const baseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
@@ -83,7 +82,6 @@ export async function getLocationData_Mapbox(lat, lng, accessToken) {
     );
   }
 }
-
 
 // funtion that return a city and country from lat and lng using Mapbox API
 export async function getCityAndCountry_Mapbox(lat, lng, accessToken) {

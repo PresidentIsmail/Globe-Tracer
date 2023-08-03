@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 const CitiesContext = createContext();
 
 // json data url
-const url = "http://localhost:4000/cities";
+const baseURL = "https://globe-tracer.netlify.app:4000/cities";
+const url = "http://localhost:4000/cities" || baseURL;
 
 const CitiesProvider = ({ children }) => {
   // fetch data from the json server and store them using the useState hook
